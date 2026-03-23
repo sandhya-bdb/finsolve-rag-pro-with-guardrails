@@ -1,0 +1,42 @@
+# FinSolve RAG Pro — Production Dependencies
+# Install with: pip install -r requirements_prod.txt
+
+# ── Web Framework ──────────────────────────────────
+fastapi==0.115.6
+uvicorn[standard]==0.32.1
+python-multipart==0.0.17         # OAuth2 form data
+
+# ── Authentication ─────────────────────────────────
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+
+# ── RAG Stack ──────────────────────────────────────
+langchain==0.2.10
+langchain-community==0.2.10
+langchain-chroma==0.1.4
+langchain-groq>=0.1.9
+chromadb>=0.5.3
+sentence-transformers>=2.2.2
+unstructured>=0.10.0
+pdfminer.six>=20221105
+python-magic>=0.4.27
+
+# ── Local LLM ──────────────────────────────────────
+requests>=2.31.0
+
+# ── Database ───────────────────────────────────────
+duckdb>=0.10.0
+
+# ── Frontend ───────────────────────────────────────
+streamlit==1.36.0
+
+# ── Evaluation ─────────────────────────────────────
+# ragas>=0.1.0               # Optional: full RAGAS with LLM judge
+# langsmith>=0.1.0           # Optional: LangSmith tracing
+
+# ── Testing ────────────────────────────────────────
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+
+# ── Code Quality ───────────────────────────────────
+ruff>=0.4.0

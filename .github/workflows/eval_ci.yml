@@ -1,0 +1,61 @@
+name: "FinSolve RAG Pro - CI"
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    name: "Tests and Evaluation"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements_prod.txt
+
+      - name: Run test suite
+        run: |
+          python -m pytest tests -v --tb=short -p no:cacheprovider
+
+      - name: Run evaluation smoke test
+        run: |
+          python eval/run_evaluation.py --threshold 0.3
+        env:
+          PYTHONPATH: ${{ github.workspace }}/app:${{ github.workspace }}/eval
+
+      - name: Upload evaluation report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eval-report-${{ github.sha }}
+          path: eval/results/latest_eval.json
+          retention-days: 30
+
+  lint:
+    name: "Lint"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install ruff
+        run: pip install ruff
+
+      - name: Lint with ruff
+        run: ruff check app/ eval/ tests/ --select E,F,W --ignore E501

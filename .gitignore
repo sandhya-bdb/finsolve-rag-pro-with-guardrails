@@ -1,0 +1,38 @@
+# FinSolve RAG Pro - .gitignore
+
+# Secrets
+.env
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# Data and databases
+*.db
+*.sqlite
+chroma_db/
+resources/data/*
+!resources/data/.gitkeep
+
+# Evaluation outputs
+.eval/
+eval/results/*.json
+!eval/results/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
