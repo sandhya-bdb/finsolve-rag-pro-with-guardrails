@@ -39,19 +39,48 @@ The system follow a modular, defensive architecture designed for local-first or 
 
 ```mermaid
 graph TD
-    User((User)) --> UI[Streamlit UI]
-    UI --> API[FastAPI Backend]
-    API --> Guard[Guardrails Manager]
-    Guard --> Cache{Semantic Cache}
-    Cache -- Hit --> UI
-    Cache -- Miss --> Router[Model Router]
-    Router --> HyDE[HyDE Query Expansion]
-    HyDE --> Vector[ChromaDB + RBAC]
-    Vector --> Rerank[Cross-Encoder Reranker]
-    Rerank --> LLM[Groq / Ollama]
-    LLM --> OutGuard[Output Guardrails]
-    OutGuard --> UI
-    API --> DB[(DuckDB Audit & Feedback)]
+    subgraph "Live Runtime Pipeline"
+        User((User)) --> UI[Streamlit UI]
+        UI --> API[FastAPI Backend]
+        API --> Guard[Guardrails Manager]
+        Guard --> Cache{Semantic Cache}
+        Cache -- Hit --> UI
+        Cache -- Miss --> Router[Model Router]
+        Router --> HyDE[HyDE Query Expansion]
+        HyDE --> Vector[ChromaDB + RBAC]
+        Vector --> Rerank[Cross-Encoder Reranker]
+        Rerank --> LLM[Groq / Ollama]
+        LLM --> OutGuard[Output Guardrails]
+        OutGuard --> UI
+        API --> DB[(DuckDB Audit & Feedback)]
+    end
+
+    subgraph "Validation & CI/CD Pipeline (RAGAS)"
+        Code[GitHub Push] --> CI[GitHub Actions]
+        CI --> Tests[Pytest Suite]
+        Tests --> Ragas[RAGAS Evaluation]
+        Ragas --> Summary{Quality Gate}
+        Summary -- Pass --> Deploy[Live Deployment]
+        Summary -- Fail --> Notify[Fix Required]
+    end
+```
+
+---
+
+## ✅ Automated Evaluation (RAGAS)
+
+The project includes a built-in evaluation framework to ensure high-quality, faithful responses. We use **RAGAS** metrics to validate the RAG pipeline during CI/CD:
+
+| Metric | Purpose |
+| :--- | :--- |
+| **Faithfulness** | Ensures the answer is derived strictly from the retrieved context (no hallucinations). |
+| **Answer Relevancy** | Measures how well the answer addresses the user's specific question. |
+| **Context Precision** | Checks if the retrieved documents are truly relevant to the query. |
+| **Context Recall** | Ensures the retrieved documents contain the actual information needed to answer. |
+
+You can run a local evaluation suite with:
+```bash
+python3 eval/run_evaluation.py --threshold 0.3
 ```
 
 ---
