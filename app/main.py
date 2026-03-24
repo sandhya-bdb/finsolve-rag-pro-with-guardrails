@@ -17,6 +17,9 @@ import uuid
 from datetime import datetime, timedelta
 from typing import Dict, Literal, Optional
 
+from dotenv import load_dotenv
+load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
+
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
@@ -58,7 +61,7 @@ RERANK_ENABLED = os.environ.get("RERANK_ENABLED", "true").lower() == "true"
 HYDE_CANDIDATES = int(os.environ.get("HYDE_CANDIDATES", "8"))
 RERANK_TOP_K = int(os.environ.get("RERANK_TOP_K", "4"))
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
 
 USERS_DB: Dict[str, Dict] = {
     "Deb": {"hashed_password": pwd_context.hash("password123"), "role": "engineering"},

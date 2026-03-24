@@ -31,9 +31,9 @@ class ModelConfig:
 
 
 GROQ_DEFAULT_MODELS = {
-    QueryComplexity.SIMPLE: "llama3-8b-8192",
-    QueryComplexity.MODERATE: "llama3-70b-8192",
-    QueryComplexity.COMPLEX: "mixtral-8x7b-32768",
+    QueryComplexity.SIMPLE: "llama-3.1-8b-instant",
+    QueryComplexity.MODERATE: "llama-3.3-70b-versatile",
+    QueryComplexity.COMPLEX: "llama-3.3-70b-versatile",
 }
 
 OLLAMA_DEFAULT_MODELS = {
