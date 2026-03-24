@@ -37,32 +37,37 @@
 
 The system follow a modular, defensive architecture designed for local-first or cloud-hybrid deployments.
 
+### 1. Live Runtime Pipeline
+A secure, low-latency path from query to answer.
+
 ```mermaid
 graph TD
-    subgraph "Live Runtime Pipeline"
-        User((User)) --> UI[Streamlit UI]
-        UI --> API[FastAPI Backend]
-        API --> Guard[Guardrails Manager]
-        Guard --> Cache{Semantic Cache}
-        Cache -- Hit --> UI
-        Cache -- Miss --> Router[Model Router]
-        Router --> HyDE[HyDE Query Expansion]
-        HyDE --> Vector[ChromaDB + RBAC]
-        Vector --> Rerank[Cross-Encoder Reranker]
-        Rerank --> LLM[Groq / Ollama]
-        LLM --> OutGuard[Output Guardrails]
-        OutGuard --> UI
-        API --> DB[(DuckDB Audit & Feedback)]
-    end
+    User((User)) --> UI[Streamlit UI]
+    UI --> API[FastAPI Backend]
+    API --> Guard[Guardrails Manager]
+    Guard --> Cache{Semantic Cache}
+    Cache -- Hit --> UI
+    Cache -- Miss --> Router[Model Router]
+    Router --> HyDE[HyDE Query Expansion]
+    HyDE --> Vector[ChromaDB + RBAC]
+    Vector --> Rerank[Cross-Encoder Reranker]
+    Rerank --> LLM[Groq / Ollama]
+    LLM --> OutGuard[Output Guardrails]
+    OutGuard --> UI
+    API --> DB[(DuckDB Audit & Feedback)]
+```
 
-    subgraph "Validation & CI/CD Pipeline (RAGAS)"
-        Code[GitHub Push] --> CI[GitHub Actions]
-        CI --> Tests[Pytest Suite]
-        Tests --> Ragas[RAGAS Evaluation]
-        Ragas --> Summary{Quality Gate}
-        Summary -- Pass --> Deploy[Live Deployment]
-        Summary -- Fail --> Notify[Fix Required]
-    end
+### 2. Validation & CI/CD Pipeline (RAGAS)
+The automated quality gate ensuring production stability.
+
+```mermaid
+graph TD
+    Code[GitHub Push] --> CI[GitHub Actions]
+    CI --> Tests[Pytest Suite]
+    Tests --> Ragas[RAGAS Evaluation]
+    Ragas --> Summary{Quality Gate}
+    Summary -- Pass --> Deploy[Live Deployment]
+    Summary -- Fail --> Notify[Fix Required]
 ```
 
 ---
