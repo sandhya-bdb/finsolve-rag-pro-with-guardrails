@@ -11,14 +11,17 @@ Features integrated:
   - Feedback logging and monitoring
 """
 
-import logging
 import os
+from dotenv import load_dotenv
+
+# Load environment variables before importing other modules
+load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
+
+# ruff: noqa: E402
+import logging
 import uuid
 from datetime import datetime, timedelta
 from typing import Dict, Literal, Optional
-
-from dotenv import load_dotenv
-load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
 
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware

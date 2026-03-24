@@ -32,7 +32,7 @@ class TestModelRouter:
         monkeypatch.delenv("LLM_PROVIDER", raising=False)
         monkeypatch.delenv("MODEL_SIMPLE", raising=False)
         config = route_query("What is the leave policy?", "employee")
-        assert config.model_name == "llama3-8b-8192"
+        assert config.model_name == "llama-3.1-8b-instant"
         assert config.provider == "groq"
         assert config.complexity == QueryComplexity.SIMPLE
 
@@ -43,7 +43,7 @@ class TestModelRouter:
             "Analyze the strategic financial risk and recommend mitigation strategies",
             "finance",
         )
-        assert config.model_name == "mixtral-8x7b-32768"
+        assert config.model_name == "llama-3.3-70b-versatile"
         assert config.provider == "groq"
         assert config.complexity == QueryComplexity.COMPLEX
 
