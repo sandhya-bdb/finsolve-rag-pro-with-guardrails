@@ -8,8 +8,8 @@ from contextlib import contextmanager
 from dataclasses import dataclass
 
 MODEL_COST_PER_1K: dict[str, float] = {
-    "llama3-8b-8192": 0.00005,
-    "llama3-70b-8192": 0.00079,
+    "llama-3.1-8b-instant": 0.00005,
+    "llama-3.3-70b-versatile": 0.00079,
     "mixtral-8x7b-32768": 0.00027,
     "llama3.2:1b": 0.0,
     "llama3.2": 0.0,
@@ -27,7 +27,7 @@ AVG_TOKENS_PER_WORD = 1.3
 
 @dataclass
 class QueryMetrics:
-    model_used: str = "llama3-70b-8192"
+    model_used: str = "llama-3.3-70b-versatile"
     complexity: str = "moderate"
     latency_ms: float = 0.0
     tokens_used: int = 0

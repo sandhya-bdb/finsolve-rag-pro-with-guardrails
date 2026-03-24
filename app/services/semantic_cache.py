@@ -27,6 +27,7 @@ class CacheEntry:
     response: str
     sources: list[str]
     model_used: str
+    role: str  # The owner role of this cached response
     created_at: float = field(default_factory=time.time)
     hits: int = 0
 
@@ -60,11 +61,12 @@ class SemanticCache:
     # Public API
     # ─────────────────────────────────────────
 
-    def get(self, query: str, embedding: list[float]) -> Optional[CacheEntry]:
+    def get(self, query: str, embedding: list[float], current_role: str) -> Optional[CacheEntry]:
         """
         Look up a semantically similar cached response.
-        Returns the CacheEntry if found (and updates hit count), else None.
+        Returns the CacheEntry if found AND current_role has access to original role's data.
         """
+        from services.rbac import can_access
         self._evict_expired()
         best_sim = 0.0
         best_entry: Optional[CacheEntry] = None
@@ -76,8 +78,10 @@ class SemanticCache:
                 best_entry = entry
 
         if best_sim >= self.threshold and best_entry is not None:
-            best_entry.hits += 1
-            return best_entry
+            # RBAC check: Only return hit if current user is at least as privileged as the cache owner
+            if can_access(current_role, best_entry.role):
+                best_entry.hits += 1
+                return best_entry
 
         return None
 
@@ -88,6 +92,7 @@ class SemanticCache:
         response: str,
         sources: list[str],
         model_used: str,
+        role: str,
     ) -> None:
         """Store a new response in the cache."""
         if len(self._cache) >= self.max_size:
@@ -102,6 +107,7 @@ class SemanticCache:
                 response=response,
                 sources=sources,
                 model_used=model_used,
+                role=role,
             )
         )
 

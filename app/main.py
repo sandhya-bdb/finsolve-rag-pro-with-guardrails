@@ -15,7 +15,7 @@ import os
 from dotenv import load_dotenv
 
 # Load environment variables before importing other modules
-load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
+load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"), override=True)
 
 # ruff: noqa: E402
 import logging
@@ -272,7 +272,8 @@ def chat(req: ChatRequest, current_user: Dict = Depends(get_current_user)):
 
         safe_query = guard_result.sanitized_input or message
         query_embedding = embedding_function.embed_query(safe_query)
-        cached = semantic_cache.get(safe_query, query_embedding)
+        # 2. Semantic Cache Check
+        cached = semantic_cache.get(safe_query, query_embedding, role)
         if cached:
             metrics.cache_hit = True
             metrics.model_used = cached.model_used
@@ -427,7 +428,7 @@ Final Answer:"""
         guardrail_triggered=False,
     )
 
-    semantic_cache.put(safe_query, query_embedding, final_answer, sources_list, metrics.model_used)
+    semantic_cache.put(safe_query, query_embedding, final_answer, sources_list, metrics.model_used, role)
 
     logger.info(
         "Chat: user=%s role=%s model=%s latency=%sms tokens=%s hyde=%s rerank=%s",
@@ -455,3 +456,9 @@ Final Answer:"""
         hyde_used=hyde_used,
         rerank_used=rerank_used,
     )
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

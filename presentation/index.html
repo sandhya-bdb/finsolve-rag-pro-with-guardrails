@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinSolve RAG Pro Presentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/night.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@500;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Slide 1: Title -->
+            <section data-background-image="assets/hero.png" data-background-opacity="0.4">
+                <h1 class="hero-title">FinSolve RAG Pro</h1>
+                <p class="hero-subtitle">Enterprise-Grade Financial Intelligence</p>
+                <div class="hero-feature-pills">
+                    <span>🛡️ Secure</span>
+                    <span>🧠 Intelligent</span>
+                    <span>📈 Production-Ready</span>
+                </div>
+            </section>
+
+            <!-- Slide 2: The Challenge -->
+            <section>
+                <h2>The Enterprise Challenge</h2>
+                <p class="fragment">Standard RAG systems often fail in production due to:</p>
+                <ul class="challenge-list">
+                    <li class="fragment"><span>❌</span> <strong>Data Security:</strong> PII leaks and prompt injections.</li>
+                    <li class="fragment"><span>❌</span> <strong>Hallucinations:</strong> Unreliable financial advice.</li>
+                    <li class="fragment"><span>❌</span> <strong>Cost & Latency:</strong> Inefficient model usage.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 3: The Architecture -->
+            <section>
+                <h2>Technical Architecture</h2>
+                <div class="arch-container">
+                    <div class="arch-box fragment">
+                        <h3>Frontend</h3>
+                        <p>Streamlit Chat & Admin Dashboards</p>
+                    </div>
+                    <div class="arch-arrow fragment">→</div>
+                    <div class="arch-box fragment highlight-blue">
+                        <h3>Backend</h3>
+                        <p>FastAPI & LangChain Pipeline</p>
+                    </div>
+                    <div class="arch-arrow fragment">→</div>
+                    <div class="arch-box fragment">
+                        <h3>LLMs</h3>
+                        <p>Groq (Llama 3.3) & Ollama</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 4: Security First -->
+            <section data-background-image="assets/security.png" data-background-opacity="0.2">
+                <h2>Security Guardrails</h2>
+                <div class="security-grid">
+                    <div class="security-item fragment">
+                        <h4>Prompt Injection</h4>
+                        <p>Protects against malicious user prompts trying to bypass system rules.</p>
+                    </div>
+                    <div class="security-item fragment">
+                        <h4>PII Detection</h4>
+                        <p>Automatically redacts sensitive financial and personal data.</p>
+                    </div>
+                    <div class="security-item fragment">
+                        <h4>Out-of-Scope</h4>
+                        <p>Ensures the assistant stays focused on financial topics only.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 5: Intelligent Routing -->
+            <section>
+                <h2>Intelligent Model Routing</h2>
+                <p>Dynamic decision making for cost/performance balance.</p>
+                <div class="routing-visual fragment">
+                    <div class="route-path fast">
+                        <strong>Llama-3.1 8B</strong>
+                        <span>Simple Queries (Fast & Cheap)</span>
+                    </div>
+                    <div class="route-path analytical">
+                        <strong>Llama-3.3 70B</strong>
+                        <span>Complex Reasoning (Analytical)</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 6: Advanced Retrieval -->
+            <section data-background-image="assets/retrieval.png" data-background-opacity="0.25">
+                <h2>Advanced Retrieval Engine</h2>
+                <ul class="feature-list">
+                    <li class="fragment"><strong>HyDE:</strong> Generates hypothetical documents to improve query-context mapping.</li>
+                    <li class="fragment"><strong>Cross-Encoder Reranking:</strong> Re-orders results for maximum relevance.</li>
+                    <li class="fragment"><strong>RBAC Filtering:</strong> Department-level document isolation at the vector level.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 7: Semantic Caching -->
+            <section>
+                <h2>Semantic Caching</h2>
+                <div class="cache-box fragment">
+                    <h4>Sub-millisecond Responses</h4>
+                    <p>Vector-based caching identifies semantically identical queries.</p>
+                </div>
+                <div class="metrics-grid fragment">
+                    <div class="metric-card">
+                        <span class="m-val">99%</span>
+                        <span class="m-label">Cost Savings on Repeat Queries</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="m-val">&lt;50ms</span>
+                        <span class="m-label">Cache Hit Latency</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 8: Automated Evaluation -->
+            <section>
+                <h2>Production Reliability (RAGAS)</h2>
+                <p>Continuous quality gates in CI/CD.</p>
+                <div class="ragas-metrics">
+                    <div class="ragas-item fragment">Faithfulness</div>
+                    <div class="ragas-item fragment">Answer Relevancy</div>
+                    <div class="ragas-item fragment">Context Precision</div>
+                </div>
+            </section>
+
+            <!-- Slide 9: Monitoring & Audit -->
+            <section>
+                <h2>Operational Visibility</h2>
+                <ul class="monitoring-list">
+                    <li class="fragment"><strong>Audit Logs:</strong> Every query and response is recorded in DuckDB.</li>
+                    <li class="fragment"><strong>Performance Tracking:</strong> Latency and token usage monitoring.</li>
+                    <li class="fragment"><strong>HITL Feedback:</strong> Human-in-the-loop loops for continuous learning.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 10: Conclusion -->
+            <section data-background-color="#0F172A">
+                <h1 class="final-title">FinSolve RAG Pro</h1>
+                <p class="final-subtitle">The Future of Secure Financial AI</p>
+                <div class="contact-info fragment">
+                    <span>🚀 Scalable</span>
+                    <span>🔒 Private</span>
+                    <span>💎 Performance-Driven</span>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+    <script src="slides.js"></script>
+</body>
+</html>

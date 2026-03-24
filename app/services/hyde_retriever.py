@@ -18,7 +18,7 @@ logger = logging.getLogger("finsolve.hyde")
 HYDE_TIMEOUT = 15
 
 HYDE_DEFAULT_MODELS = {
-    "groq": "llama3-8b-8192",
+    "groq": "llama-3.1-8b-instant",
     "ollama": "llama3.2:1b",
 }
 
