@@ -16,6 +16,8 @@
 
 | **✨ Premium Chat Interface** | **📊 Production Monitoring Dashboard** |
 | :---: | :---: |
+| ![Chat UI](assets/screenshots/chat_ui.png) | ![Monitoring Dashboard](assets/screenshots/dashboard.png) |
+
 ---
 
 ## 📽️ Project Presentation
