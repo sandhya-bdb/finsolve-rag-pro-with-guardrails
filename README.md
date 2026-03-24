@@ -16,7 +16,14 @@
 
 | **✨ Premium Chat Interface** | **📊 Production Monitoring Dashboard** |
 | :---: | :---: |
-| ![Chat UI](assets/screenshots/chat_ui.png) | ![Monitoring Dashboard](assets/screenshots/dashboard.png) |
+---
+
+## 📽️ Project Presentation
+
+A premium, interactive slide deck is included to showcase the project's architecture and security features.
+
+- **[View Presentation Source](presentation/index.html)**
+- **How to view:** Download the repository and open `presentation/index.html` in any modern browser.
 
 ---
 
