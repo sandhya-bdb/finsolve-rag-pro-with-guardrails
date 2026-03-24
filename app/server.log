@@ -1,50 +1,0 @@
-/Users/sandhyabantiduttaborah/Desktop/Finsolve RAG Pro/app/main.py:95: LangChainDeprecationWarning: The class `HuggingFaceEmbeddings` was deprecated in LangChain 0.2.2 and will be removed in 0.3.0. An updated version of the class exists in the langchain-huggingface package and should be used instead. To use it run `pip install -U langchain-huggingface` and import as `from langchain_huggingface import HuggingFaceEmbeddings`.
-  embedding_function = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-{"time": "2026-03-24 11:04:21,497", "level": "INFO", "msg": "Use pytorch device_name: mps"}
-{"time": "2026-03-24 11:04:21,497", "level": "INFO", "msg": "Load pretrained SentenceTransformer: all-MiniLM-L6-v2"}
-{"time": "2026-03-24 11:04:25,425", "level": "INFO", "msg": "Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information."}
-{"time": "2026-03-24 11:04:25,544", "level": "ERROR", "msg": "Failed to send telemetry event ClientStartEvent: capture() takes 1 positional argument but 3 were given"}
-{"time": "2026-03-24 11:04:25,546", "level": "ERROR", "msg": "Failed to send telemetry event ClientCreateCollectionEvent: capture() takes 1 positional argument but 3 were given"}
-INFO:     Started server process [31854]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-{"time": "2026-03-24 11:04:33,530", "level": "INFO", "msg": "Login: user=sandhya role=c-levelexecutives"}
-INFO:     127.0.0.1:51220 - "POST /login HTTP/1.1" 200 OK
-{"time": "2026-03-24 11:04:34,095", "level": "INFO", "msg": "Routing: user=sandhya role=c-levelexecutives complexity=complex provider=groq model=llama-3.3-70b-versatile"}
-huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
-To disable this warning, you can either:
-	- Avoid using `tokenizers` before the fork if possible
-	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
-huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
-To disable this warning, you can either:
-	- Avoid using `tokenizers` before the fork if possible
-	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
-{"time": "2026-03-24 11:04:34,730", "level": "INFO", "msg": "HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request""}
-{"time": "2026-03-24 11:04:34,736", "level": "WARNING", "msg": "HyDE provider error (Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}) - falling back to original query"}
-{"time": "2026-03-24 11:04:34,738", "level": "ERROR", "msg": "Failed to send telemetry event CollectionQueryEvent: capture() takes 1 positional argument but 3 were given"}
-{"time": "2026-03-24 11:04:36,637", "level": "INFO", "msg": "Use pytorch device: mps"}
-{"time": "2026-03-24 11:04:37,447", "level": "INFO", "msg": "Reranker loaded: cross-encoder/ms-marco-MiniLM-L-6-v2"}
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  7.73it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  7.71it/s]
-{"time": "2026-03-24 11:04:37,620", "level": "INFO", "msg": "Reranker: 8 candidates → top 4 | best_score=2.265 worst_kept=-4.206"}
-{"time": "2026-03-24 11:04:37,621", "level": "INFO", "msg": "Reranking: user=sandhya top_k=4"}
-{"time": "2026-03-24 11:04:39,051", "level": "INFO", "msg": "HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK""}
-{"time": "2026-03-24 11:04:39,194", "level": "INFO", "msg": "Chat: user=sandhya role=c-levelexecutives model=llama-3.3-70b-versatile latency=5520.08ms tokens=677 hyde=False rerank=True"}
-INFO:     127.0.0.1:51222 - "POST /chat HTTP/1.1" 200 OK
-{"time": "2026-03-24 11:04:50,411", "level": "INFO", "msg": "Login: user=sandhya role=c-levelexecutives"}
-INFO:     127.0.0.1:51229 - "POST /login HTTP/1.1" 200 OK
-{"time": "2026-03-24 11:04:50,778", "level": "INFO", "msg": "Cache hit: user=sandhya query_len=23"}
-INFO:     127.0.0.1:51231 - "POST /chat HTTP/1.1" 200 OK
-{"time": "2026-03-24 11:05:22,800", "level": "INFO", "msg": "Login: user=sandhya role=c-levelexecutives"}
-INFO:     127.0.0.1:51239 - "POST /login HTTP/1.1" 200 OK
-{"time": "2026-03-24 11:05:40,352", "level": "INFO", "msg": "Routing: user=sandhya role=c-levelexecutives complexity=complex provider=groq model=llama-3.3-70b-versatile"}
-{"time": "2026-03-24 11:05:40,742", "level": "INFO", "msg": "HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 400 Bad Request""}
-{"time": "2026-03-24 11:05:40,743", "level": "WARNING", "msg": "HyDE provider error (Error code: 400 - {'error': {'message': 'The model `llama3-8b-8192` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.', 'type': 'invalid_request_error', 'code': 'model_decommissioned'}}) - falling back to original query"}
-Batches:   0%|          | 0/1 [00:00<?, ?it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  7.68it/s]Batches: 100%|██████████| 1/1 [00:00<00:00,  7.66it/s]
-{"time": "2026-03-24 11:05:40,971", "level": "INFO", "msg": "Reranker: 8 candidates → top 4 | best_score=3.131 worst_kept=-6.414"}
-{"time": "2026-03-24 11:05:40,971", "level": "INFO", "msg": "Reranking: user=sandhya top_k=4"}
-{"time": "2026-03-24 11:05:45,651", "level": "INFO", "msg": "HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK""}
-{"time": "2026-03-24 11:05:45,713", "level": "INFO", "msg": "Chat: user=sandhya role=c-levelexecutives model=llama-3.3-70b-versatile latency=5805.92ms tokens=2433 hyde=False rerank=True"}
-INFO:     127.0.0.1:51251 - "POST /chat HTTP/1.1" 200 OK
-{"time": "2026-03-24 11:06:17,433", "level": "INFO", "msg": "Cache hit: user=sandhya query_len=23"}
-INFO:     127.0.0.1:51256 - "POST /chat HTTP/1.1" 200 OK
