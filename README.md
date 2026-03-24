@@ -7,6 +7,10 @@
 
 **FinSolve RAG Pro** is a state-of-the-art Retrieval-Augmented Generation (RAG) assistant designed for enterprise environments. It goes beyond basic RAG by integrating advanced security, intelligent model routing, sophisticated retrieval techniques, and full production observability.
 
+| Premium Chat UI | Production Monitoring Dashboard |
+| :---: | :---: |
+| ![Chat UI](assets/screenshots/chat_ui.png) | ![Monitoring Dashboard](assets/screenshots/dashboard.png) |
+
 ---
 
 ## 🌟 Key Enhancements (The "Pro" Advantage)
